@@ -27,10 +27,13 @@ bl_info = {
     "name": "Decimator",
     "author": "lknknm, lowpolypalmtree",
     "version": (0, 1, 0),
-    "blender": (3, 30, 0),
+    "blender": (3, 40, 0),
     "location": "View3D > Add > Mesh",
     "description": "Macro for Decimate modifier in Planar mode",
-    "category": "Object"}
+    "category": "Object",
+    "doc_url": "https://github.com/lknknm/blender-decimator-plugin"
+                "GitHub"
+    }
 
 deg5 = radians(5)
 deg30 = radians(30)
@@ -41,14 +44,13 @@ deg120 = radians(120)
 deg150 = radians(150)
 deg180 = radians(180)
 
-
-def decimateModifier(degrees):
+def apply_decimate_modifier(degrees):
         bpy.ops.object.modifier_add(type='DECIMATE')
         bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = {degrees}
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        bpy.context.object.modifiers["Decimate"].angle_limit = degrees
+        bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
 
-#defines class for the Angle Limit of 5 d"egrees.
+#defines class for the Angle Limit of 5 degrees.
 class decimate_5degrees(bpy.types.Operator):
     """
     Set Planar Mode Angle Limit to 5°
@@ -63,7 +65,7 @@ class decimate_5degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        decimateModifier(deg5)
+        apply_decimate_modifier(deg5)
         return {'FINISHED'}
     
 #defines class for the Angle Limit of 30 degrees.
@@ -81,10 +83,7 @@ class decimate_30degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg30
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg30)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 45 degrees.
@@ -102,10 +101,7 @@ class decimate_45degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg45
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg45)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 60 degrees.
@@ -123,10 +119,7 @@ class decimate_60degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg60
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg60)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 90 degrees.
@@ -144,10 +137,7 @@ class decimate_90degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg90
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg90)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 120 degrees.
@@ -165,10 +155,7 @@ class decimate_120degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg120
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg120)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 150 degrees.
@@ -186,10 +173,7 @@ class decimate_150degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg150
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg150)
         return {'FINISHED'}
 
 #defines class for the Angle Limit of 180 degrees.
@@ -207,14 +191,12 @@ class decimate_180degrees(bpy.types.Operator):
         return context.active_object is not None
     
     def execute(self, context):
-        bpy.ops.object.modifier_add(type='DECIMATE')
-        bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
-        bpy.context.object.modifiers["Decimate"].angle_limit = deg180
-        #bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        apply_decimate_modifier(deg180)
         return {'FINISHED'}
     
-class decimator_plugin(Menu):
+class decimator_plugin_pie(Menu):
     bl_label = "Decimate"
+    bl_idname = "wm.call_menu_pie"
 
     def draw(self, context):
         layout = self.layout
@@ -229,33 +211,41 @@ class decimator_plugin(Menu):
         pie.separator() # Skip Southwest position
         pie.separator() # Skip Southeast position
 
-        #pie.operator("decimate.120degrees", icon="MOD_DECIM")
-        #pie.operator("decimate.150degrees", icon="MOD_DECIM")
-        #pie.operator("decimate.180degrees", icon="MOD_DECIM")
+classes = (
+    decimator_plugin_pie, 
+    decimate_5degrees, 
+    decimate_30degrees, 
+    decimate_45degrees, 
+    decimate_60degrees, 
+    decimate_90degrees
+    )
+
+addon_keymaps = []
 
 def register():
-    bpy.utils.register_class(decimator_plugin)
-    bpy.utils.register_class(decimate_5degrees)
-    bpy.utils.register_class(decimate_30degrees)
-    bpy.utils.register_class(decimate_45degrees)
-    bpy.utils.register_class(decimate_60degrees)
-    bpy.utils.register_class(decimate_90degrees)
-    bpy.utils.register_class(decimate_120degrees)
-    bpy.utils.register_class(decimate_150degrees)
-    bpy.utils.register_class(decimate_180degrees)
+    for cls in classes:
+        bpy.utils.register_class(cls)
+
+    # Add the hotkey
+    wm = bpy.context.window_manager
+    kc = wm.keyconfigs.addon
+    if kc:
+        km = kc.keymaps.new(name='3D View', space_type= 'VIEW_3D')
+        kmi = km.keymap_items.new("wm.call_menu_pie", type= 'F', value= 'PRESS', shift= True)
+        addon_keymaps.append((km, kmi))
+
 
 def unregister():
-    bpy.utils.unregister_class(decimator_plugin)
-    bpy.utils.unregister_class(decimate_5degrees)
-    bpy.utils.unregister_class(decimate_30degrees)
-    bpy.utils.unregister_class(decimate_45degrees)
-    bpy.utils.unregister_class(decimate_60degrees)
-    bpy.utils.unregister_class(decimate_90degrees)
-    bpy.utils.unregister_class(decimate_120degrees)
-    bpy.utils.unregister_class(decimate_150degrees)
-    bpy.utils.unregister_class(decimate_180degrees)
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
+
+    # Remove the hotkey
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
+
 
 if __name__ == "__main__":
     register()
 
-    bpy.ops.wm.call_menu_pie(name="decimator_plugin")
+    bpy.ops.wm.call_menu_pie(name="decimator_plugin_pie")
