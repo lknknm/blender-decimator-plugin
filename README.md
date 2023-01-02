@@ -6,6 +6,7 @@ This Add-on is actually a macro for Blender that uses the already existing <a hr
 
 After the Add-on is installed on <a href="https://www.blender.org/">Blender</a>, in Object Mode press Ctrl+Shift+D to bring the Decimator pie menu and select the desired Angle Limit.
 For simple objects, 5° Angle Limit is more than enough.
+
 ![decimate](https://user-images.githubusercontent.com/108239558/210245413-3ad654c9-e687-4985-ac7e-70565422c42e.gif)
 The addon has an Angle Limit range from 5° to 90°. Users should be careful to apply the 90° Angle Limit because it can be a bit extreme depending on the geometry and desired effect. For most cases the range of 5° to 30° is enough to decimate polys and still keep the overall geometry intact.
 
@@ -19,7 +20,8 @@ To be able to use this feature inside Blender, you need first to download Blende
 3. Under the 'Add-ons' tab select Install and select the Zip folder from this repository. You'll have to mark the checkbox to enable it as any other Add-on.
 
 - As mentioned, this Add-on is currently binded on the Ctrl+Shift+D hotkey. You can change the keymapping to any other you like most by accessing Blender Preferences > Keymap > 3D View (Global):
-![image](https://user-images.githubusercontent.com/108239558/210252075-614e3851-cb6a-4d94-a9bf-28b5a1e4c5e2.png)
+- 
+<img src="https://user-images.githubusercontent.com/108239558/210252075-614e3851-cb6a-4d94-a9bf-28b5a1e4c5e2.png" width="540" />
 
 > GPL License.
 You can fork this project and create your own version of it without notifying me.
