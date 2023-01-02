@@ -32,7 +32,6 @@ bl_info = {
     "description": "Macro for Decimate modifier in Planar mode",
     "category": "Object",
     "doc_url": "https://github.com/lknknm/blender-decimator-plugin"
-                "GitHub"
     }
 
 deg5 = radians(5)
