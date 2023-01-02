@@ -4,7 +4,7 @@ This addon is actually a macro for Blender that uses the already existing Decima
 
 ## How to use it
 
-After the addon is installed, in Object Mode press Ctrl+Shift+D to bring the Decimator pie menu and select the desired Angle Limit.
+After the addon is installed on <a href="https://www.blender.org/">Blender</a>, in Object Mode press Ctrl+Shift+D to bring the Decimator pie menu and select the desired Angle Limit.
 For simple objects, 5° Angle Limit is more than enough.
 ![decimate](https://user-images.githubusercontent.com/108239558/210245413-3ad654c9-e687-4985-ac7e-70565422c42e.gif)
 The addon has an Angle Limit range from 5° to 90°. Users should be careful to apply the 90° Angle Limit because it can be a bit extreme depending on the geometry and desired effect. For most cases the range of 5° to 30° is enough to decimate polys and still keep the overall geometry intact.
