@@ -22,7 +22,7 @@ To be able to use this feature inside Blender, you need first to download Blende
 - As mentioned, this Add-on is currently binded on the Ctrl+Shift+D hotkey. You can change the keymapping to any other you like most by accessing Blender Preferences > Keymap > 3D View (Global):
 
 
-<img src="https://user-images.githubusercontent.com/108239558/210252075-614e3851-cb6a-4d94-a9bf-28b5a1e4c5e2.png"/>
+![image](https://user-images.githubusercontent.com/108239558/210252075-614e3851-cb6a-4d94-a9bf-28b5a1e4c5e2.png)
 
 > GPL License.
 You can fork this project and create your own version of it without notifying me.
