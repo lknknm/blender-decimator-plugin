@@ -48,7 +48,7 @@ def apply_decimate_modifier(degrees):
         bpy.ops.object.modifier_add(type='DECIMATE')
         bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
         bpy.context.object.modifiers["Decimate"].angle_limit = degrees
-        bpy.ops.object.modifier_apply(modifier="Decimate", report=True)
+        bpy.ops.object.modifier_apply(modifier="Decimate", report=True, single_user=True)
 
 #defines class for the Angle Limit of 5 degrees.
 class decimate_5degrees(bpy.types.Operator):
@@ -139,64 +139,10 @@ class decimate_90degrees(bpy.types.Operator):
     def execute(self, context):
         apply_decimate_modifier(deg90)
         return {'FINISHED'}
-
-#defines class for the Angle Limit of 120 degrees.
-class decimate_120degrees(bpy.types.Operator):
-    """
-    Set Planar Mode Angle Limit to 120°
-    """
-
-    bl_idname = "decimate.120degrees"
-    bl_label = "Angle Limit: 120°"
-    
-    #TODO:
-    @classmethod
-    def poll(cls, context):
-        return context.active_object is not None
-    
-    def execute(self, context):
-        apply_decimate_modifier(deg120)
-        return {'FINISHED'}
-
-#defines class for the Angle Limit of 150 degrees.
-class decimate_150degrees(bpy.types.Operator):
-    """
-    Set Planar Mode Angle Limit to 150°
-    """
-
-    bl_idname = "decimate.150degrees"
-    bl_label = "Angle Limit: 150°"
-    
-    #TODO:
-    @classmethod
-    def poll(cls, context):
-        return context.active_object is not None
-    
-    def execute(self, context):
-        apply_decimate_modifier(deg150)
-        return {'FINISHED'}
-
-#defines class for the Angle Limit of 180 degrees.
-class decimate_180degrees(bpy.types.Operator):
-    """
-    Set Planar Mode Angle Limit to 180°
-    """
-    
-    bl_idname = "decimate.180degrees"
-    bl_label = "Angle Limit: 180°"
-    
-    #TODO:
-    @classmethod
-    def poll(cls, context):
-        return context.active_object is not None
-    
-    def execute(self, context):
-        apply_decimate_modifier(deg180)
-        return {'FINISHED'}
-    
-class decimator_plugin_pie(Menu):
-    bl_label = "Decimate"
-    bl_idname = "wm.call_menu_pie"
+ 
+class VIEW3D_MT_PIE_decimator(Menu):
+    bl_label = "Decimator"
+    bl_idname = "VIEW3D_MT_PIE_decimator"
 
     def draw(self, context):
         layout = self.layout
@@ -212,7 +158,7 @@ class decimator_plugin_pie(Menu):
         pie.separator() # Skip Southeast position
 
 classes = (
-    decimator_plugin_pie, 
+    VIEW3D_MT_PIE_decimator, 
     decimate_5degrees, 
     decimate_30degrees, 
     decimate_45degrees, 
@@ -226,12 +172,19 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
 
-    # Add the hotkey
+    # Add hotkey to Ctrl+Shift+D on 3D View (Global) - Hotkey can be customized within Blender settings
     wm = bpy.context.window_manager
     kc = wm.keyconfigs.addon
     if kc:
-        km = kc.keymaps.new(name='3D View', space_type= 'VIEW_3D')
-        kmi = km.keymap_items.new("wm.call_menu_pie", type= 'F', value= 'PRESS', shift= True)
+        km = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
+        kmi = km.keymap_items.new(
+                                    "wm.call_menu_pie", 
+                                    type='D', 
+                                    value='PRESS', 
+                                    shift=True, 
+                                    ctrl=True
+                                    )
+        kmi.properties.name = "VIEW3D_MT_PIE_decimator"
         addon_keymaps.append((km, kmi))
 
 
@@ -248,4 +201,4 @@ def unregister():
 if __name__ == "__main__":
     register()
 
-    bpy.ops.wm.call_menu_pie(name="decimator_plugin_pie")
+    bpy.ops.wm.call_menu_pie(name="VIEW3D_MT_PIE_decimator")
