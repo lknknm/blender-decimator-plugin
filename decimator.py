@@ -59,10 +59,9 @@ class decimate_5degrees(bpy.types.Operator):
     bl_idname = "decimate.5degrees"
     bl_label = "Angle Limit: 5°"
     
-    #TODO:
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object is not None and context.active_object.select_get() is True and context.active_object.type == 'MESH'
     
     def execute(self, context):
         apply_decimate_modifier(deg5)
@@ -77,10 +76,9 @@ class decimate_30degrees(bpy.types.Operator):
     bl_idname = "decimate.30degrees"
     bl_label = "Angle Limit: 30°"
     
-    #TODO:
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object is not None and context.active_object.select_get() is True and context.active_object.type == 'MESH'
     
     def execute(self, context):
         apply_decimate_modifier(deg30)
@@ -95,10 +93,9 @@ class decimate_45degrees(bpy.types.Operator):
     bl_idname = "decimate.45degrees"
     bl_label = "Angle Limit: 45°"
     
-    #TODO:
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object is not None and context.active_object.select_get() is True and context.active_object.type == 'MESH'
     
     def execute(self, context):
         apply_decimate_modifier(deg45)
@@ -113,10 +110,9 @@ class decimate_60degrees(bpy.types.Operator):
     bl_idname = "decimate.60degrees"
     bl_label = "Angle Limit: 60°"
     
-    #TODO:
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object is not None and context.active_object.select_get() is True and context.active_object.type == 'MESH'
     
     def execute(self, context):
         apply_decimate_modifier(deg60)
@@ -131,10 +127,9 @@ class decimate_90degrees(bpy.types.Operator):
     bl_idname = "decimate.90degrees"
     bl_label = "Angle Limit: 90°"
     
-    #TODO:
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object is not None and context.active_object.select_get() is True and context.active_object.type == 'MESH'
     
     def execute(self, context):
         apply_decimate_modifier(deg90)
