@@ -1,6 +1,6 @@
 ### Decimator - Blender Addon
 
-This addon is actually a macro for Blender that uses the already existing <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a> for asset optimization and polygon decimation. I developed it for personal use to improve performance on larger scenes, specially when they are imported from other software and formats, such as *.fbx or Autodesk Revit architectural files, for example.
+This addon is actually a macro for Blender that uses the already existing <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a> in Planar mode for asset optimization and polygon decimation. I developed it for personal use to improve performance on larger scenes, specially when they are imported from other software and formats, such as *.fbx or Autodesk Revit architectural files, for example.
 
 ## How to use it
 
